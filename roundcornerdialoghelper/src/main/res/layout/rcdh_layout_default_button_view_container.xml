@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    app:divider="@android:color/darker_gray"
+    app:showDividers="middle">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_rcdh_left_button"
+        style="@style/AppCompatTextView_Button"
+        android:text="@string/cancel" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_rcdh_middle_button"
+        style="@style/AppCompatTextView_Button"
+        android:text="@string/button" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_rcdh_right_button"
+        style="@style/AppCompatTextView_Button"
+        android:text="@string/confirm" />
+</android.support.v7.widget.LinearLayoutCompat>

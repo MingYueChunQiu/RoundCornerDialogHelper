@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp__4">0.4dp</dimen>
+
+    <dimen name="font_18">18sp</dimen>
+</resources>

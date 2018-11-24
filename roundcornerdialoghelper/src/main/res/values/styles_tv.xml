@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--按钮文字样式-->
+    <style name="AppCompatTextView_Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">@dimen/dp_10</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/selector_color_gray_to_black</item>
+        <item name="android:textSize">@dimen/font_18</item>
+    </style>
+
+</resources>
