@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_10"
-        android:text="@string/test"
+        android:text="@string/title"
         android:textSize="@dimen/font_18" />
 
     <android.support.v7.widget.AppCompatTextView
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_10"
-        android:text="@string/test"
+        android:text="@string/content"
         android:textSize="@dimen/font_18" />
 
     <View

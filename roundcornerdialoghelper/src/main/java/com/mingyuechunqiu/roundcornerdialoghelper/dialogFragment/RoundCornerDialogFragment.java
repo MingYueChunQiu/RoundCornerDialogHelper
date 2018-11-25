@@ -1,10 +1,13 @@
 package com.mingyuechunqiu.roundcornerdialoghelper.dialogFragment;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.util.TypedValue;
@@ -15,6 +18,9 @@ import android.widget.FrameLayout;
 
 import com.mingyuechunqiu.roundcornerdialoghelper.R;
 import com.mingyuechunqiu.roundcornerdialoghelper.bean.RoundCornerDialogHelperOption;
+import com.mingyuechunqiu.roundcornerdialoghelper.framework.OnRCDHClickLeftButtonListener;
+import com.mingyuechunqiu.roundcornerdialoghelper.framework.OnRCDHClickMiddleButtonListener;
+import com.mingyuechunqiu.roundcornerdialoghelper.framework.OnRCDHClickRightButtonListener;
 import com.mingyuechunqiu.roundcornerdialoghelper.util.ScreenUtils;
 import com.mingyuechunqiu.roundcornerdialoghelper.view.CustomButtonContainerViewable;
 import com.mingyuechunqiu.roundcornerdialoghelper.view.DefaultButtonContainerView;
@@ -29,22 +35,35 @@ import com.mingyuechunqiu.roundcornerdialoghelper.view.DefaultButtonContainerVie
  *     version: 1.0
  * </pre>
  */
-public class RoundCornerDialogFragment extends BaseDialogFragment implements View.OnClickListener {
+public class RoundCornerDialogFragment extends DialogFragment implements View.OnClickListener {
 
     private RoundCornerDialogHelperOption mOption;
     private CustomButtonContainerViewable mBtnContainerViewable;
 
     @Override
-    protected void release() {
-        mOption = null;
-        mBtnContainerViewable = null;
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //放在onCreateView里无效
+        setStyle(DialogFragment.STYLE_NO_TITLE, 0);
     }
 
+    @Nullable
     @Override
-    protected View initView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //去掉对话框的背景，以便设置自已样式的背景
+        if (getDialog().getWindow() != null) {
+            getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
         View view = inflater.inflate(R.layout.rcdh_dialog_fragment_round_corner, container, false);
         setOption(inflater, view);
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mOption = null;
+        mBtnContainerViewable = null;
     }
 
     /**
@@ -55,14 +74,7 @@ public class RoundCornerDialogFragment extends BaseDialogFragment implements Vie
      */
     private void setOption(@NonNull LayoutInflater inflater, View view) {
         if (mOption == null) {
-            mOption = new RoundCornerDialogHelperOption.Builder()
-                    .setBgColor(Color.WHITE)
-                    .setCornerRadius((int) ScreenUtils.getPxFromDp(getResources(), 10))
-                    .setTitleVisible(true)
-                    .setContentVisible(true)
-                    .setLeftButtonVisible(true)
-                    .setRightButtonVisible(true)
-                    .build();
+            getDefaultOption();
         }
         FrameLayout flContainer = view.findViewById(R.id.fl_rcdh_view_container);
         if (mOption.getCustomView() != null) {
@@ -78,14 +90,13 @@ public class RoundCornerDialogFragment extends BaseDialogFragment implements Vie
                 drawable = viewDrawable;
                 float[] radius;
                 if (mOption.getCornerRadius() > 0) {
-                    radius = new float[]{mOption.getCornerRadius(), mOption.getCornerRadius(),
-                            mOption.getCornerRadius(), mOption.getCornerRadius(),
-                            0, 0, 0, 0,};
+                    float dpRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getCornerRadius());
+                    radius = new float[]{dpRadius, dpRadius, dpRadius, dpRadius, 0, 0, 0, 0,};
                 } else if (mOption.getLeftTopCornerRadius() > 0 ||
                         mOption.getRightTopCornerRadius() > 0) {
-                    radius = new float[]{mOption.getLeftTopCornerRadius(), mOption.getLeftTopCornerRadius(),
-                            mOption.getRightTopCornerRadius(), mOption.getRightTopCornerRadius(),
-                            0, 0, 0, 0};
+                    float dpLeftRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getLeftTopCornerRadius());
+                    float dpRightRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getRightTopCornerRadius());
+                    radius = new float[]{dpLeftRadius, dpLeftRadius, dpRightRadius, dpRightRadius, 0, 0, 0, 0};
                 } else {
                     radius = new float[]{0, 0, 0, 0, 0, 0, 0, 0};
                 }
@@ -134,12 +145,13 @@ public class RoundCornerDialogFragment extends BaseDialogFragment implements Vie
         GradientDrawable buttonDrawable = new GradientDrawable();
         float[] radius;
         if (mOption.getCornerRadius() > 0) {
-            radius = new float[]{0, 0, 0, 0, mOption.getCornerRadius(), mOption.getCornerRadius(),
-                    mOption.getCornerRadius(), mOption.getCornerRadius()};
+            float dpRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getCornerRadius());
+            radius = new float[]{0, 0, 0, 0, dpRadius, dpRadius, dpRadius, dpRadius};
         } else if (mOption.getLeftBottomCornerRadius() > 0 ||
                 mOption.getRightBottomCornerRadius() > 0) {
-            radius = new float[]{0, 0, 0, 0, mOption.getRightBottomCornerRadius(), mOption.getRightBottomCornerRadius(),
-                    mOption.getLeftBottomCornerRadius(), mOption.getLeftBottomCornerRadius()};
+            float dpRightRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getRightBottomCornerRadius());
+            float dpLeftRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getLeftBottomCornerRadius());
+            radius = new float[]{0, 0, 0, 0, dpRightRadius, dpRightRadius, dpLeftRadius, dpLeftRadius};
         } else {
             radius = new float[]{0, 0, 0, 0, 0, 0, 0, 0};
         }
@@ -150,7 +162,7 @@ public class RoundCornerDialogFragment extends BaseDialogFragment implements Vie
         actvLeft = mBtnContainerViewable.getLeftButton();
         actvMiddle = mBtnContainerViewable.getMiddleButton();
         actvRight = mBtnContainerViewable.getRightButton();
-        if (mOption.isLeftButtonVisible()) {
+        if (mOption.getOnRCDHClickLeftButtonListener() != null) {
             if (!TextUtils.isEmpty(mOption.getLeftButtonText())) {
                 actvLeft.setText(mOption.getLeftButtonText());
             }
@@ -160,10 +172,11 @@ public class RoundCornerDialogFragment extends BaseDialogFragment implements Vie
             if (mOption.getLeftButtonTextSize() > 0) {
                 actvLeft.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getLeftButtonTextSize());
             }
+            actvLeft.setOnClickListener(this);
         } else {
             actvLeft.setVisibility(View.GONE);
         }
-        if (mOption.isMiddleButtonVisible()) {
+        if (mOption.getOnRCDHClickMiddleButtonListener() != null) {
             if (!TextUtils.isEmpty(mOption.getMiddleButtonText())) {
                 actvMiddle.setText(mOption.getMiddleButtonText());
             }
@@ -173,10 +186,11 @@ public class RoundCornerDialogFragment extends BaseDialogFragment implements Vie
             if (mOption.getMiddleButtonTextSize() > 0) {
                 actvMiddle.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getMiddleButtonTextSize());
             }
+            actvMiddle.setOnClickListener(this);
         } else {
             actvMiddle.setVisibility(View.GONE);
         }
-        if (mOption.isRightButtonVisible()) {
+        if (mOption.getOnRCDHClickRightButtonListener() != null) {
             if (!TextUtils.isEmpty(mOption.getRightButtonText())) {
                 actvRight.setText(mOption.getRightButtonText());
             }
@@ -186,26 +200,34 @@ public class RoundCornerDialogFragment extends BaseDialogFragment implements Vie
             if (mOption.getRightButtonTextSize() > 0) {
                 actvRight.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getRightButtonTextSize());
             }
+            actvRight.setOnClickListener(this);
         } else {
             actvRight.setVisibility(View.GONE);
         }
-        actvLeft.setOnClickListener(this);
-        actvMiddle.setOnClickListener(this);
-        actvRight.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if (mBtnContainerViewable == null || mOption.getOnRCDHClickListener() == null) {
+        if (mBtnContainerViewable == null) {
             return;
         }
         if (v.getId() == mBtnContainerViewable.getLeftButton().getId()) {
-            mOption.getOnRCDHClickListener().onClickLeftButton(this, mBtnContainerViewable.getLeftButton());
+            mOption.getOnRCDHClickLeftButtonListener().onClickLeftButton(this, mBtnContainerViewable.getLeftButton());
         } else if (v.getId() == mBtnContainerViewable.getMiddleButton().getId()) {
-            mOption.getOnRCDHClickListener().onClickMiddleButton(this, mBtnContainerViewable.getMiddleButton());
+            mOption.getOnRCDHClickMiddleButtonListener().onClickMiddleButton(this, mBtnContainerViewable.getMiddleButton());
         } else if (v.getId() == mBtnContainerViewable.getRightButton().getId()) {
-            mOption.getOnRCDHClickListener().onClickRightButton(this, mBtnContainerViewable.getRightButton());
+            mOption.getOnRCDHClickRightButtonListener().onClickRightButton(this, mBtnContainerViewable.getRightButton());
         }
+        dismiss();
+    }
+
+    /**
+     * 创建对话框实例
+     *
+     * @return 返回对话框实例
+     */
+    public static RoundCornerDialogFragment newInstance() {
+        return newInstance(null);
     }
 
     /**
@@ -218,5 +240,35 @@ public class RoundCornerDialogFragment extends BaseDialogFragment implements Vie
         RoundCornerDialogFragment fragment = new RoundCornerDialogFragment();
         fragment.mOption = option;
         return fragment;
+    }
+
+    /**
+     * 获取默认的配置对象
+     */
+    private void getDefaultOption() {
+        mOption = new RoundCornerDialogHelperOption.Builder()
+                .setBgColor(Color.WHITE)
+                .setCornerRadius(10)
+                .setTitleVisible(true)
+                .setContentVisible(true)
+                .setOnRCDHClickLeftButtonListener(new OnRCDHClickLeftButtonListener() {
+                    @Override
+                    public void onClickLeftButton(RoundCornerDialogFragment fragment, AppCompatTextView v) {
+
+                    }
+                })
+                .setOnRCDHClickMiddleButtonListener(new OnRCDHClickMiddleButtonListener() {
+                    @Override
+                    public void onClickMiddleButton(RoundCornerDialogFragment fragment, AppCompatTextView v) {
+
+                    }
+                })
+                .setOnRCDHClickRightButtonListener(new OnRCDHClickRightButtonListener() {
+                    @Override
+                    public void onClickRightButton(RoundCornerDialogFragment fragment, AppCompatTextView v) {
+
+                    }
+                })
+                .build();
     }
 }

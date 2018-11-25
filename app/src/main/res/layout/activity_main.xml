@@ -19,6 +19,13 @@
         android:id="@+id/btn_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/test"/>
+        android:text="@string/test" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_custom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/custom"
+        app:layout_constraintTop_toBottomOf="@id/btn_test" />
 
 </android.support.constraint.ConstraintLayout>

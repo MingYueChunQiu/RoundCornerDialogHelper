@@ -3,7 +3,9 @@ package com.mingyuechunqiu.roundcornerdialoghelper.bean;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
-import com.mingyuechunqiu.roundcornerdialoghelper.framework.OnRCDHClickListener;
+import com.mingyuechunqiu.roundcornerdialoghelper.framework.OnRCDHClickLeftButtonListener;
+import com.mingyuechunqiu.roundcornerdialoghelper.framework.OnRCDHClickMiddleButtonListener;
+import com.mingyuechunqiu.roundcornerdialoghelper.framework.OnRCDHClickRightButtonListener;
 import com.mingyuechunqiu.roundcornerdialoghelper.view.CustomButtonContainerViewable;
 
 /**
@@ -41,12 +43,14 @@ public class RoundCornerDialogHelperOption {
     private int rightButtonTextSize;//右边按钮文本大小
     private boolean isTitleVisible;//标题是否可见
     private boolean isContentVisible;//内容是否可见
-    private boolean isLeftButtonVisible;//左边按钮是否可见
-    private boolean isMiddleButtonVisible;//中间按钮是否可见
-    private boolean isRightButtonVisible;//右边按钮是否可见
     private View customView;//自定义显示view
     private CustomButtonContainerViewable customButtonContainerView;//自定义按钮容器类
-    private OnRCDHClickListener onRCDHClickListener;
+    //点击左边按钮监听器,设置监听器后按钮才会显示
+    private OnRCDHClickLeftButtonListener onRCDHClickLeftButtonListener;
+    //点击中间按钮监听器,设置监听器后按钮才会显示
+    private OnRCDHClickMiddleButtonListener onRCDHClickMiddleButtonListener;
+    //点击右边按钮监听器,设置监听器后按钮才会显示
+    private OnRCDHClickRightButtonListener onRCDHClickRightButtonListener;
 
     public int getLeftTopCornerRadius() {
         return leftTopCornerRadius;
@@ -240,30 +244,6 @@ public class RoundCornerDialogHelperOption {
         isContentVisible = contentVisible;
     }
 
-    public boolean isLeftButtonVisible() {
-        return isLeftButtonVisible;
-    }
-
-    public void setLeftButtonVisible(boolean leftButtonVisible) {
-        isLeftButtonVisible = leftButtonVisible;
-    }
-
-    public boolean isMiddleButtonVisible() {
-        return isMiddleButtonVisible;
-    }
-
-    public void setMiddleButtonVisible(boolean middleButtonVisible) {
-        isMiddleButtonVisible = middleButtonVisible;
-    }
-
-    public boolean isRightButtonVisible() {
-        return isRightButtonVisible;
-    }
-
-    public void setRightButtonVisible(boolean rightButtonVisible) {
-        isRightButtonVisible = rightButtonVisible;
-    }
-
     public View getCustomView() {
         return customView;
     }
@@ -280,12 +260,28 @@ public class RoundCornerDialogHelperOption {
         this.customButtonContainerView = customButtonContainerView;
     }
 
-    public OnRCDHClickListener getOnRCDHClickListener() {
-        return onRCDHClickListener;
+    public OnRCDHClickLeftButtonListener getOnRCDHClickLeftButtonListener() {
+        return onRCDHClickLeftButtonListener;
     }
 
-    public void setOnRCDHClickListener(OnRCDHClickListener onRCDHClickListener) {
-        this.onRCDHClickListener = onRCDHClickListener;
+    public void setOnRCDHClickLeftButtonListener(OnRCDHClickLeftButtonListener onRCDHClickLeftButtonListener) {
+        this.onRCDHClickLeftButtonListener = onRCDHClickLeftButtonListener;
+    }
+
+    public OnRCDHClickMiddleButtonListener getOnRCDHClickMiddleButtonListener() {
+        return onRCDHClickMiddleButtonListener;
+    }
+
+    public void setOnRCDHClickMiddleButtonListener(OnRCDHClickMiddleButtonListener onRCDHClickMiddleButtonListener) {
+        this.onRCDHClickMiddleButtonListener = onRCDHClickMiddleButtonListener;
+    }
+
+    public OnRCDHClickRightButtonListener getOnRCDHClickRightButtonListener() {
+        return onRCDHClickRightButtonListener;
+    }
+
+    public void setOnRCDHClickRightButtonListener(OnRCDHClickRightButtonListener onRCDHClickRightButtonListener) {
+        this.onRCDHClickRightButtonListener = onRCDHClickRightButtonListener;
     }
 
     /**
@@ -519,33 +515,6 @@ public class RoundCornerDialogHelperOption {
             return this;
         }
 
-        public boolean isLeftButtonVisible() {
-            return mOption.isLeftButtonVisible;
-        }
-
-        public Builder setLeftButtonVisible(boolean leftButtonVisible) {
-            mOption.isLeftButtonVisible = leftButtonVisible;
-            return this;
-        }
-
-        public boolean isMiddleButtonVisible() {
-            return mOption.isMiddleButtonVisible;
-        }
-
-        public Builder setMiddleButtonVisible(boolean middleButtonVisible) {
-            mOption.isMiddleButtonVisible = middleButtonVisible;
-            return this;
-        }
-
-        public boolean isRightButtonVisible() {
-            return mOption.isRightButtonVisible;
-        }
-
-        public Builder setRightButtonVisible(boolean rightButtonVisible) {
-            mOption.isRightButtonVisible = rightButtonVisible;
-            return this;
-        }
-
         public View getCustomView() {
             return mOption.customView;
         }
@@ -564,12 +533,30 @@ public class RoundCornerDialogHelperOption {
             return this;
         }
 
-        public OnRCDHClickListener getOnRCDHClickListener() {
-            return mOption.onRCDHClickListener;
+        public OnRCDHClickLeftButtonListener getOnRCDHClickLeftButtonListener() {
+            return mOption.onRCDHClickLeftButtonListener;
         }
 
-        public Builder setOnRCDHClickListener(OnRCDHClickListener onRCDHClickListener) {
-            mOption.onRCDHClickListener = onRCDHClickListener;
+        public Builder setOnRCDHClickLeftButtonListener(OnRCDHClickLeftButtonListener onRCDHClickLeftButtonListener) {
+            mOption.onRCDHClickLeftButtonListener = onRCDHClickLeftButtonListener;
+            return this;
+        }
+
+        public OnRCDHClickMiddleButtonListener getOnRCDHClickMiddleButtonListener() {
+            return mOption.onRCDHClickMiddleButtonListener;
+        }
+
+        public Builder setOnRCDHClickMiddleButtonListener(OnRCDHClickMiddleButtonListener onRCDHClickMiddleButtonListener) {
+            mOption.onRCDHClickMiddleButtonListener = onRCDHClickMiddleButtonListener;
+            return this;
+        }
+
+        public OnRCDHClickRightButtonListener getOnRCDHClickRightButtonListener() {
+            return mOption.onRCDHClickRightButtonListener;
+        }
+
+        public Builder setOnRCDHClickRightButtonListener(OnRCDHClickRightButtonListener onRCDHClickRightButtonListener) {
+            mOption.onRCDHClickRightButtonListener = onRCDHClickRightButtonListener;
             return this;
         }
     }
