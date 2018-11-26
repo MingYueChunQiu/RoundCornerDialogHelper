@@ -19,7 +19,7 @@
 
 ```
 dependencies {
-		implementation 'com.github.User:Repo:0.1'
+		implementation 'com.github.User:Repo:0.1.1'
 	}
 ```
 ### 3.项目使用
