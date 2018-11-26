@@ -19,28 +19,33 @@ import com.mingyuechunqiu.roundcornerdialoghelper.view.CustomButtonContainerView
  */
 public class RoundCornerDialogHelperOption {
 
-    private int leftTopCornerRadius;//左上圆角半径
-    private int rightTopCornerRadius;//右上圆角半径
-    private int leftBottomCornerRadius;//左下圆角半径
-    private int rightBottomCornerRadius;//右下圆角半径\
-    private int cornerRadius;//圆角半径
+    private float leftTopCornerRadius;//左上圆角半径
+    private float rightTopCornerRadius;//右上圆角半径
+    private float leftBottomCornerRadius;//左下圆角半径
+    private float rightBottomCornerRadius;//右下圆角半径\
+    private float cornerRadius;//圆角半径
     private int bgColor;//背景颜色
     private Drawable bgDrawable;//背景图片
     private String titleText;//标题文本
     private int titleTextColor;//标题文本颜色
     private int titleTextSize;//标题文本大小
+    private int titlePadding;//标题内边距
     private String contentText;//内容文本
     private int contentTextColor;//内容文本颜色
     private int contentTextSize;//内容文本大熊啊
+    private int contentPadding;//内容内边距
     private String leftButtonText;//左边按钮文本
     private int leftButtonTextColor;//左边按钮文本颜色
     private int leftButtonTextSize;//左边按钮文本大小
+    private int leftButtonPadding;//左边按钮内边距
     private String middleButtonText;//中间按钮文本
     private int middleButtonTextColor;//中间按钮文本颜色
     private int middleButtonTextSize;//中间按钮文本大小
+    private int middleButtonPadding;//中间按钮内边距
     private String rightButtonText;//右边按钮文本
     private int rightButtonTextColor;//右边按钮文本颜色
     private int rightButtonTextSize;//右边按钮文本大小
+    private int rightButtonPadding;//右边按钮内边距
     private boolean isTitleVisible;//标题是否可见
     private boolean isContentVisible;//内容是否可见
     private View customView;//自定义显示view
@@ -52,43 +57,43 @@ public class RoundCornerDialogHelperOption {
     //点击右边按钮监听器,设置监听器后按钮才会显示
     private OnRCDHClickRightButtonListener onRCDHClickRightButtonListener;
 
-    public int getLeftTopCornerRadius() {
+    public float getLeftTopCornerRadius() {
         return leftTopCornerRadius;
     }
 
-    public void setLeftTopCornerRadius(int leftTopCornerRadius) {
+    public void setLeftTopCornerRadius(float leftTopCornerRadius) {
         this.leftTopCornerRadius = leftTopCornerRadius;
     }
 
-    public int getRightTopCornerRadius() {
+    public float getRightTopCornerRadius() {
         return rightTopCornerRadius;
     }
 
-    public void setRightTopCornerRadius(int rightTopCornerRadius) {
+    public void setRightTopCornerRadius(float rightTopCornerRadius) {
         this.rightTopCornerRadius = rightTopCornerRadius;
     }
 
-    public int getLeftBottomCornerRadius() {
+    public float getLeftBottomCornerRadius() {
         return leftBottomCornerRadius;
     }
 
-    public void setLeftBottomCornerRadius(int leftBottomCornerRadius) {
+    public void setLeftBottomCornerRadius(float leftBottomCornerRadius) {
         this.leftBottomCornerRadius = leftBottomCornerRadius;
     }
 
-    public int getRightBottomCornerRadius() {
+    public float getRightBottomCornerRadius() {
         return rightBottomCornerRadius;
     }
 
-    public void setRightBottomCornerRadius(int rightBottomCornerRadius) {
+    public void setRightBottomCornerRadius(float rightBottomCornerRadius) {
         this.rightBottomCornerRadius = rightBottomCornerRadius;
     }
 
-    public int getCornerRadius() {
+    public float getCornerRadius() {
         return cornerRadius;
     }
 
-    public void setCornerRadius(int cornerRadius) {
+    public void setCornerRadius(float cornerRadius) {
         this.cornerRadius = cornerRadius;
     }
 
@@ -132,6 +137,14 @@ public class RoundCornerDialogHelperOption {
         this.titleTextSize = titleTextSize;
     }
 
+    public int getTitlePadding() {
+        return titlePadding;
+    }
+
+    public void setTitlePadding(int titlePadding) {
+        this.titlePadding = titlePadding;
+    }
+
     public String getContentText() {
         return contentText;
     }
@@ -154,6 +167,14 @@ public class RoundCornerDialogHelperOption {
 
     public void setContentTextSize(int contentTextSize) {
         this.contentTextSize = contentTextSize;
+    }
+
+    public int getContentPadding() {
+        return contentPadding;
+    }
+
+    public void setContentPadding(int contentPadding) {
+        this.contentPadding = contentPadding;
     }
 
     public String getLeftButtonText() {
@@ -180,6 +201,14 @@ public class RoundCornerDialogHelperOption {
         this.leftButtonTextSize = leftButtonTextSize;
     }
 
+    public int getLeftButtonPadding() {
+        return leftButtonPadding;
+    }
+
+    public void setLeftButtonPadding(int leftButtonPadding) {
+        this.leftButtonPadding = leftButtonPadding;
+    }
+
     public String getMiddleButtonText() {
         return middleButtonText;
     }
@@ -204,6 +233,14 @@ public class RoundCornerDialogHelperOption {
         this.middleButtonTextSize = middleButtonTextSize;
     }
 
+    public int getMiddleButtonPadding() {
+        return middleButtonPadding;
+    }
+
+    public void setMiddleButtonPadding(int middleButtonPadding) {
+        this.middleButtonPadding = middleButtonPadding;
+    }
+
     public String getRightButtonText() {
         return rightButtonText;
     }
@@ -226,6 +263,14 @@ public class RoundCornerDialogHelperOption {
 
     public void setRightButtonTextSize(int rightButtonTextSize) {
         this.rightButtonTextSize = rightButtonTextSize;
+    }
+
+    public int getRightButtonPadding() {
+        return rightButtonPadding;
+    }
+
+    public void setRightButtonPadding(int rightButtonPadding) {
+        this.rightButtonPadding = rightButtonPadding;
     }
 
     public boolean isTitleVisible() {
@@ -299,47 +344,47 @@ public class RoundCornerDialogHelperOption {
             return mOption;
         }
 
-        public int getLeftTopCornerRadius() {
+        public float getLeftTopCornerRadius() {
             return mOption.leftTopCornerRadius;
         }
 
-        public Builder setLeftTopCornerRadius(int leftTopCornerRadius) {
+        public Builder setLeftTopCornerRadius(float leftTopCornerRadius) {
             mOption.leftTopCornerRadius = leftTopCornerRadius;
             return this;
         }
 
-        public int getRightTopCornerRadius() {
+        public float getRightTopCornerRadius() {
             return mOption.rightTopCornerRadius;
         }
 
-        public Builder setRightTopCornerRadius(int rightTopCornerRadius) {
+        public Builder setRightTopCornerRadius(float rightTopCornerRadius) {
             mOption.rightTopCornerRadius = rightTopCornerRadius;
             return this;
         }
 
-        public int getLeftBottomCornerRadius() {
+        public float getLeftBottomCornerRadius() {
             return mOption.leftBottomCornerRadius;
         }
 
-        public Builder setLeftBottomCornerRadius(int leftBottomCornerRadius) {
+        public Builder setLeftBottomCornerRadius(float leftBottomCornerRadius) {
             mOption.leftBottomCornerRadius = leftBottomCornerRadius;
             return this;
         }
 
-        public int getRightBottomCornerRadius() {
+        public float getRightBottomCornerRadius() {
             return mOption.rightBottomCornerRadius;
         }
 
-        public Builder setRightBottomCornerRadius(int rightBottomCornerRadius) {
+        public Builder setRightBottomCornerRadius(float rightBottomCornerRadius) {
             mOption.rightBottomCornerRadius = rightBottomCornerRadius;
             return this;
         }
 
-        public int getCornerRadius() {
+        public float getCornerRadius() {
             return mOption.cornerRadius;
         }
 
-        public Builder setCornerRadius(int cornerRadius) {
+        public Builder setCornerRadius(float cornerRadius) {
             mOption.cornerRadius = cornerRadius;
             return this;
         }
@@ -389,6 +434,15 @@ public class RoundCornerDialogHelperOption {
             return this;
         }
 
+        public int getTitlePadding() {
+            return mOption.titlePadding;
+        }
+
+        public Builder setTitlePadding(int titlePadding) {
+            mOption.titlePadding = titlePadding;
+            return this;
+        }
+
         public String getContentText() {
             return mOption.contentText;
         }
@@ -413,6 +467,15 @@ public class RoundCornerDialogHelperOption {
 
         public Builder setContentTextSize(int contentTextSize) {
             mOption.contentTextSize = contentTextSize;
+            return this;
+        }
+
+        public int getContentPadding() {
+            return mOption.contentPadding;
+        }
+
+        public Builder setContentPadding(int contentPadding) {
+            mOption.contentPadding = contentPadding;
             return this;
         }
 
@@ -443,6 +506,15 @@ public class RoundCornerDialogHelperOption {
             return this;
         }
 
+        public int getLeftButtonPadding() {
+            return mOption.leftButtonPadding;
+        }
+
+        public Builder setLeftButtonPadding(int leftButtonPadding) {
+            mOption.leftButtonPadding = leftButtonPadding;
+            return this;
+        }
+
         public String getMiddleButtonText() {
             return mOption.middleButtonText;
         }
@@ -470,6 +542,15 @@ public class RoundCornerDialogHelperOption {
             return this;
         }
 
+        public int getMiddleButtonPadding() {
+            return mOption.middleButtonPadding;
+        }
+
+        public Builder setMiddleButtonPadding(int middleButtonPadding) {
+            mOption.middleButtonPadding = middleButtonPadding;
+            return this;
+        }
+
         public String getRightButtonText() {
             return mOption.rightButtonText;
         }
@@ -494,6 +575,15 @@ public class RoundCornerDialogHelperOption {
 
         public Builder setRightButtonTextSize(int rightButtonTextSize) {
             mOption.rightButtonTextSize = rightButtonTextSize;
+            return this;
+        }
+
+        public int getRightButtonPadding() {
+            return mOption.rightButtonPadding;
+        }
+
+        public Builder setRightButtonPadding(int rightButtonPadding) {
+            mOption.rightButtonPadding = rightButtonPadding;
             return this;
         }
 

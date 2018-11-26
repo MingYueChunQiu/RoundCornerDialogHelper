@@ -66,146 +66,6 @@ public class RoundCornerDialogFragment extends DialogFragment implements View.On
         mBtnContainerViewable = null;
     }
 
-    /**
-     * 设置对话框配置
-     *
-     * @param inflater 布局填充器
-     * @param view     最外层布局view
-     */
-    private void setOption(@NonNull LayoutInflater inflater, View view) {
-        if (mOption == null) {
-            getDefaultOption();
-        }
-        FrameLayout flContainer = view.findViewById(R.id.fl_rcdh_view_container);
-        if (mOption.getCustomView() != null) {
-            flContainer.addView(mOption.getCustomView());
-        } else {
-            View defaultView = inflater.inflate(R.layout.rcdh_layout_default_view_container, flContainer, false);
-            flContainer.addView(defaultView);
-            Drawable drawable;
-            if (mOption.getBgDrawable() != null) {
-                drawable = mOption.getBgDrawable();
-            } else {
-                GradientDrawable viewDrawable = new GradientDrawable();
-                drawable = viewDrawable;
-                float[] radius;
-                if (mOption.getCornerRadius() > 0) {
-                    float dpRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getCornerRadius());
-                    radius = new float[]{dpRadius, dpRadius, dpRadius, dpRadius, 0, 0, 0, 0,};
-                } else if (mOption.getLeftTopCornerRadius() > 0 ||
-                        mOption.getRightTopCornerRadius() > 0) {
-                    float dpLeftRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getLeftTopCornerRadius());
-                    float dpRightRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getRightTopCornerRadius());
-                    radius = new float[]{dpLeftRadius, dpLeftRadius, dpRightRadius, dpRightRadius, 0, 0, 0, 0};
-                } else {
-                    radius = new float[]{0, 0, 0, 0, 0, 0, 0, 0};
-                }
-                viewDrawable.setCornerRadii(radius);
-                if (mOption.getBgColor() != 0) {
-                    viewDrawable.setColor(mOption.getBgColor());
-                }
-            }
-            defaultView.setBackground(drawable);
-            AppCompatTextView actvTitle = defaultView.findViewById(R.id.tv_rcdh_title);
-            if (mOption.isTitleVisible()) {
-                if (!TextUtils.isEmpty(mOption.getTitleText())) {
-                    actvTitle.setText(mOption.getTitleText());
-                    if (mOption.getTitleTextColor() != 0) {
-                        actvTitle.setTextColor(mOption.getTitleTextColor());
-                    }
-                    if (mOption.getTitleTextSize() > 0) {
-                        actvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getTitleTextSize());
-                    }
-                }
-            } else {
-                actvTitle.setVisibility(View.GONE);
-            }
-            AppCompatTextView actvContent = defaultView.findViewById(R.id.tv_rcdh_content);
-            if (mOption.isContentVisible()) {
-                if (!TextUtils.isEmpty(mOption.getContentText())) {
-                    actvContent.setText(mOption.getContentText());
-                    if (mOption.getContentTextColor() != 0) {
-                        actvContent.setTextColor(mOption.getContentTextColor());
-                    }
-                    if (mOption.getContentTextSize() > 0) {
-                        actvContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getContentTextSize());
-                    }
-                }
-            } else {
-                actvContent.setVisibility(View.GONE);
-            }
-        }
-        FrameLayout flButtonViewContainer = view.findViewById(R.id.fl_rcdh_button_container);
-        AppCompatTextView actvLeft, actvMiddle, actvRight;
-        if (mOption.getCustomButtonContainerView() == null) {
-            mBtnContainerViewable = new DefaultButtonContainerView(getContext(), (ViewGroup) view);
-        } else {
-            mBtnContainerViewable = mOption.getCustomButtonContainerView();
-        }
-        GradientDrawable buttonDrawable = new GradientDrawable();
-        float[] radius;
-        if (mOption.getCornerRadius() > 0) {
-            float dpRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getCornerRadius());
-            radius = new float[]{0, 0, 0, 0, dpRadius, dpRadius, dpRadius, dpRadius};
-        } else if (mOption.getLeftBottomCornerRadius() > 0 ||
-                mOption.getRightBottomCornerRadius() > 0) {
-            float dpRightRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getRightBottomCornerRadius());
-            float dpLeftRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getLeftBottomCornerRadius());
-            radius = new float[]{0, 0, 0, 0, dpRightRadius, dpRightRadius, dpLeftRadius, dpLeftRadius};
-        } else {
-            radius = new float[]{0, 0, 0, 0, 0, 0, 0, 0};
-        }
-        buttonDrawable.setCornerRadii(radius);
-        buttonDrawable.setColor(Color.WHITE);
-        mBtnContainerViewable.getContainer().setBackground(buttonDrawable);
-        flButtonViewContainer.addView(mBtnContainerViewable.getContainer());
-        actvLeft = mBtnContainerViewable.getLeftButton();
-        actvMiddle = mBtnContainerViewable.getMiddleButton();
-        actvRight = mBtnContainerViewable.getRightButton();
-        if (mOption.getOnRCDHClickLeftButtonListener() != null) {
-            if (!TextUtils.isEmpty(mOption.getLeftButtonText())) {
-                actvLeft.setText(mOption.getLeftButtonText());
-            }
-            if (mOption.getLeftButtonTextColor() != 0) {
-                actvLeft.setTextColor(mOption.getLeftButtonTextColor());
-            }
-            if (mOption.getLeftButtonTextSize() > 0) {
-                actvLeft.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getLeftButtonTextSize());
-            }
-            actvLeft.setOnClickListener(this);
-        } else {
-            actvLeft.setVisibility(View.GONE);
-        }
-        if (mOption.getOnRCDHClickMiddleButtonListener() != null) {
-            if (!TextUtils.isEmpty(mOption.getMiddleButtonText())) {
-                actvMiddle.setText(mOption.getMiddleButtonText());
-            }
-            if (mOption.getMiddleButtonTextColor() != 0) {
-                actvMiddle.setTextColor(mOption.getMiddleButtonTextColor());
-            }
-            if (mOption.getMiddleButtonTextSize() > 0) {
-                actvMiddle.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getMiddleButtonTextSize());
-            }
-            actvMiddle.setOnClickListener(this);
-        } else {
-            actvMiddle.setVisibility(View.GONE);
-        }
-        if (mOption.getOnRCDHClickRightButtonListener() != null) {
-            if (!TextUtils.isEmpty(mOption.getRightButtonText())) {
-                actvRight.setText(mOption.getRightButtonText());
-            }
-            if (mOption.getRightButtonTextColor() != 0) {
-                actvRight.setTextColor(mOption.getRightButtonTextColor());
-            }
-            if (mOption.getRightButtonTextSize() > 0) {
-                actvRight.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getRightButtonTextSize());
-            }
-            actvRight.setOnClickListener(this);
-        } else {
-            actvRight.setVisibility(View.GONE);
-        }
-    }
-
     @Override
     public void onClick(View v) {
         if (mBtnContainerViewable == null) {
@@ -243,6 +103,211 @@ public class RoundCornerDialogFragment extends DialogFragment implements View.On
     }
 
     /**
+     * 设置对话框配置
+     *
+     * @param inflater 布局填充器
+     * @param view     最外层布局view
+     */
+    private void setOption(@NonNull LayoutInflater inflater, View view) {
+        if (mOption == null) {
+            getDefaultOption();
+        }
+        setContainerView(inflater, view);
+        setButtonContainerView(view);
+    }
+
+    /**
+     * 设置按钮上方容器view
+     *
+     * @param inflater 布局填充器
+     * @param view     父布局view
+     */
+    private void setContainerView(@NonNull LayoutInflater inflater, View view) {
+        FrameLayout flContainer = view.findViewById(R.id.fl_rcdh_view_container);
+        if (mOption.getCustomView() != null) {
+            flContainer.addView(mOption.getCustomView());
+        } else {
+            View defaultView = inflater.inflate(R.layout.rcdh_layout_default_view_container, flContainer, false);
+            flContainer.addView(defaultView);
+            Drawable drawable;
+            if (mOption.getBgDrawable() != null) {
+                drawable = mOption.getBgDrawable();
+            } else {
+                GradientDrawable viewDrawable = new GradientDrawable();
+                drawable = viewDrawable;
+                float[] radius;
+                if (mOption.getCornerRadius() > 0) {
+                    float dpRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getCornerRadius());
+                    if (checkIsButtonsEmpty()) {
+                        radius = new float[]{dpRadius, dpRadius, dpRadius, dpRadius,
+                                dpRadius, dpRadius, dpRadius, dpRadius};
+                    } else {
+                        radius = new float[]{dpRadius, dpRadius, dpRadius, dpRadius, 0, 0, 0, 0};
+                    }
+                } else if (mOption.getLeftTopCornerRadius() > 0 ||
+                        mOption.getRightTopCornerRadius() > 0) {
+                    float dpLeftRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getLeftTopCornerRadius());
+                    float dpRightRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getRightTopCornerRadius());
+                    if (checkIsButtonsEmpty() && (mOption.getLeftBottomCornerRadius() > 0 ||
+                            mOption.getRightBottomCornerRadius() > 0)) {
+                        float dpBottomLeftRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getLeftBottomCornerRadius());
+                        float dpBottomRightRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getRightBottomCornerRadius());
+                        radius = new float[]{dpLeftRadius, dpLeftRadius, dpRightRadius, dpRightRadius,
+                                dpBottomRightRadius, dpBottomRightRadius, dpBottomLeftRadius, dpBottomLeftRadius};
+                    } else {
+                        radius = new float[]{dpLeftRadius, dpLeftRadius, dpRightRadius, dpRightRadius, 0, 0, 0, 0};
+                    }
+                } else {
+                    if (checkIsButtonsEmpty() && (mOption.getLeftBottomCornerRadius() > 0 ||
+                            mOption.getRightBottomCornerRadius() > 0)) {
+                        float dpBottomLeftRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getLeftBottomCornerRadius());
+                        float dpBottomRightRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getRightBottomCornerRadius());
+                        radius = new float[]{0, 0, 0, 0, dpBottomRightRadius, dpBottomRightRadius,
+                                dpBottomLeftRadius, dpBottomLeftRadius};
+                    } else {
+                        radius = new float[]{0, 0, 0, 0, 0, 0, 0, 0};
+                    }
+                }
+                viewDrawable.setCornerRadii(radius);
+                if (mOption.getBgColor() != 0) {
+                    viewDrawable.setColor(mOption.getBgColor());
+                }
+            }
+            defaultView.setBackground(drawable);
+            AppCompatTextView actvTitle = defaultView.findViewById(R.id.tv_rcdh_title);
+            if (mOption.isTitleVisible()) {
+                if (!TextUtils.isEmpty(mOption.getTitleText())) {
+                    actvTitle.setText(mOption.getTitleText());
+                }
+                if (mOption.getTitleTextColor() != 0) {
+                    actvTitle.setTextColor(mOption.getTitleTextColor());
+                }
+                if (mOption.getTitleTextSize() > 0) {
+                    actvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getTitleTextSize());
+                }
+                if (mOption.getTitlePadding() > 0) {
+                    int padding = (int) ScreenUtils.getPxFromDp(getResources(), mOption.getTitlePadding());
+                    actvTitle.setPadding(padding, padding, padding, padding);
+                }
+            } else {
+                actvTitle.setVisibility(View.GONE);
+            }
+            AppCompatTextView actvContent = defaultView.findViewById(R.id.tv_rcdh_content);
+            if (mOption.isContentVisible()) {
+                if (!TextUtils.isEmpty(mOption.getContentText())) {
+                    actvContent.setText(mOption.getContentText());
+                }
+                if (mOption.getContentTextColor() != 0) {
+                    actvContent.setTextColor(mOption.getContentTextColor());
+                }
+                if (mOption.getContentTextSize() > 0) {
+                    actvContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getContentTextSize());
+                }
+                if (mOption.getContentPadding() > 0) {
+                    int padding = (int) ScreenUtils.getPxFromDp(getResources(), mOption.getContentPadding());
+                    actvContent.setPadding(padding, padding, padding, padding);
+                }
+            } else {
+                actvContent.setVisibility(View.GONE);
+            }
+        }
+        View vDivider = view.findViewById(R.id.v_rcdh_divider);
+        if (checkIsButtonsEmpty()) {
+            //INVISIBLE而不是GONE,撑开对话框
+            vDivider.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    /**
+     * 设置按钮容器view
+     *
+     * @param view 父布局view
+     */
+    private void setButtonContainerView(View view) {
+        FrameLayout flButtonViewContainer = view.findViewById(R.id.fl_rcdh_button_container);
+        AppCompatTextView actvLeft, actvMiddle, actvRight;
+        if (mOption.getCustomButtonContainerView() == null) {
+            mBtnContainerViewable = new DefaultButtonContainerView(getContext(), (ViewGroup) view);
+        } else {
+            mBtnContainerViewable = mOption.getCustomButtonContainerView();
+        }
+        GradientDrawable buttonDrawable = new GradientDrawable();
+        float[] radius;
+        if (mOption.getCornerRadius() > 0) {
+            float dpRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getCornerRadius());
+            radius = new float[]{0, 0, 0, 0, dpRadius, dpRadius, dpRadius, dpRadius};
+        } else if (mOption.getLeftBottomCornerRadius() > 0 ||
+                mOption.getRightBottomCornerRadius() > 0) {
+            float dpRightRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getRightBottomCornerRadius());
+            float dpLeftRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getLeftBottomCornerRadius());
+            radius = new float[]{0, 0, 0, 0, dpRightRadius, dpRightRadius, dpLeftRadius, dpLeftRadius};
+        } else {
+            radius = new float[]{0, 0, 0, 0, 0, 0, 0, 0};
+        }
+        buttonDrawable.setCornerRadii(radius);
+        buttonDrawable.setColor(Color.WHITE);
+        mBtnContainerViewable.getContainer().setBackground(buttonDrawable);
+        flButtonViewContainer.addView(mBtnContainerViewable.getContainer());
+        actvLeft = mBtnContainerViewable.getLeftButton();
+        actvMiddle = mBtnContainerViewable.getMiddleButton();
+        actvRight = mBtnContainerViewable.getRightButton();
+        if (mOption.getOnRCDHClickLeftButtonListener() != null) {
+            if (!TextUtils.isEmpty(mOption.getLeftButtonText())) {
+                actvLeft.setText(mOption.getLeftButtonText());
+            }
+            if (mOption.getLeftButtonTextColor() != 0) {
+                actvLeft.setTextColor(mOption.getLeftButtonTextColor());
+            }
+            if (mOption.getLeftButtonTextSize() > 0) {
+                actvLeft.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getLeftButtonTextSize());
+            }
+            if (mOption.getLeftButtonPadding() > 0) {
+                int padding = (int) ScreenUtils.getPxFromDp(getResources(), mOption.getLeftButtonPadding());
+                actvLeft.setPadding(padding, padding, padding, padding);
+            }
+            actvLeft.setOnClickListener(this);
+        } else {
+            actvLeft.setVisibility(View.GONE);
+        }
+        if (mOption.getOnRCDHClickMiddleButtonListener() != null) {
+            if (!TextUtils.isEmpty(mOption.getMiddleButtonText())) {
+                actvMiddle.setText(mOption.getMiddleButtonText());
+            }
+            if (mOption.getMiddleButtonTextColor() != 0) {
+                actvMiddle.setTextColor(mOption.getMiddleButtonTextColor());
+            }
+            if (mOption.getMiddleButtonTextSize() > 0) {
+                actvMiddle.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getMiddleButtonTextSize());
+            }
+            if (mOption.getMiddleButtonPadding() > 0) {
+                int padding = (int) ScreenUtils.getPxFromDp(getResources(), mOption.getMiddleButtonPadding());
+                actvMiddle.setPadding(padding, padding, padding, padding);
+            }
+            actvMiddle.setOnClickListener(this);
+        } else {
+            actvMiddle.setVisibility(View.GONE);
+        }
+        if (mOption.getOnRCDHClickRightButtonListener() != null) {
+            if (!TextUtils.isEmpty(mOption.getRightButtonText())) {
+                actvRight.setText(mOption.getRightButtonText());
+            }
+            if (mOption.getRightButtonTextColor() != 0) {
+                actvRight.setTextColor(mOption.getRightButtonTextColor());
+            }
+            if (mOption.getRightButtonTextSize() > 0) {
+                actvRight.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getRightButtonTextSize());
+            }
+            if (mOption.getRightButtonPadding() > 0) {
+                int padding = (int) ScreenUtils.getPxFromDp(getResources(), mOption.getRightButtonPadding());
+                actvRight.setPadding(padding, padding, padding, padding);
+            }
+            actvRight.setOnClickListener(this);
+        } else {
+            actvRight.setVisibility(View.GONE);
+        }
+    }
+
+    /**
      * 获取默认的配置对象
      */
     private void getDefaultOption() {
@@ -270,5 +335,17 @@ public class RoundCornerDialogFragment extends DialogFragment implements View.On
                     }
                 })
                 .build();
+    }
+
+    /**
+     * 检测是否没有按钮
+     *
+     * @return 如果没有按钮返回true，否则返回false
+     */
+    private boolean checkIsButtonsEmpty() {
+        return mOption == null ||
+                (mOption.getOnRCDHClickLeftButtonListener() == null &&
+                        mOption.getOnRCDHClickMiddleButtonListener() == null &&
+                        mOption.getOnRCDHClickRightButtonListener() == null);
     }
 }

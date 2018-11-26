@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
                         .setTitleVisible(true)
                         .setCornerRadius(20)
                         .setBgColor(Color.RED)
+                        .setTitleTextSize(24)
+                        .setTitlePadding(30)
                         .setLeftButtonTextColor(Color.GREEN)
                         .setOnRCDHClickLeftButtonListener(new OnRCDHClickLeftButtonListener() {
                             @Override
