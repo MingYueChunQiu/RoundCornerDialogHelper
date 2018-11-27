@@ -179,11 +179,15 @@ public class RoundCornerDialogFragment extends DialogFragment implements View.On
                 if (!TextUtils.isEmpty(mOption.getTitleText())) {
                     actvTitle.setText(mOption.getTitleText());
                 }
-                if (mOption.getTitleTextColor() != 0) {
-                    actvTitle.setTextColor(mOption.getTitleTextColor());
-                }
-                if (mOption.getTitleTextSize() > 0) {
-                    actvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getTitleTextSize());
+                if (mOption.getTitleTextAppearance() != 0) {
+                    actvTitle.setTextAppearance(getContext(), mOption.getTitleTextAppearance());
+                } else {
+                    if (mOption.getTitleTextColor() != 0) {
+                        actvTitle.setTextColor(mOption.getTitleTextColor());
+                    }
+                    if (mOption.getTitleTextSize() > 0) {
+                        actvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getTitleTextSize());
+                    }
                 }
                 if (mOption.getTitlePadding() > 0) {
                     int padding = (int) ScreenUtils.getPxFromDp(getResources(), mOption.getTitlePadding());
@@ -197,11 +201,15 @@ public class RoundCornerDialogFragment extends DialogFragment implements View.On
                 if (!TextUtils.isEmpty(mOption.getContentText())) {
                     actvContent.setText(mOption.getContentText());
                 }
-                if (mOption.getContentTextColor() != 0) {
-                    actvContent.setTextColor(mOption.getContentTextColor());
-                }
-                if (mOption.getContentTextSize() > 0) {
-                    actvContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getContentTextSize());
+                if (mOption.getContentTextAppearance() != 0) {
+                    actvContent.setTextAppearance(getContext(), mOption.getContentTextAppearance());
+                } else {
+                    if (mOption.getContentTextColor() != 0) {
+                        actvContent.setTextColor(mOption.getContentTextColor());
+                    }
+                    if (mOption.getContentTextSize() > 0) {
+                        actvContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getContentTextSize());
+                    }
                 }
                 if (mOption.getContentPadding() > 0) {
                     int padding = (int) ScreenUtils.getPxFromDp(getResources(), mOption.getContentPadding());
@@ -255,15 +263,34 @@ public class RoundCornerDialogFragment extends DialogFragment implements View.On
             if (!TextUtils.isEmpty(mOption.getLeftButtonText())) {
                 actvLeft.setText(mOption.getLeftButtonText());
             }
-            if (mOption.getLeftButtonTextColor() != 0) {
-                actvLeft.setTextColor(mOption.getLeftButtonTextColor());
-            }
-            if (mOption.getLeftButtonTextSize() > 0) {
-                actvLeft.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getLeftButtonTextSize());
+            if (mOption.getLeftButtonTextAppearance() != 0) {
+                actvLeft.setTextAppearance(getContext(), mOption.getLeftButtonTextAppearance());
+            } else {
+                if (mOption.getLeftButtonTextColor() != 0) {
+                    actvLeft.setTextColor(mOption.getLeftButtonTextColor());
+                }
+                if (mOption.getLeftButtonTextSize() > 0) {
+                    actvLeft.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getLeftButtonTextSize());
+                }
             }
             if (mOption.getLeftButtonPadding() > 0) {
                 int padding = (int) ScreenUtils.getPxFromDp(getResources(), mOption.getLeftButtonPadding());
                 actvLeft.setPadding(padding, padding, padding, padding);
+            }
+            if (mOption.getLeftButtonBgColor() != 0) {
+                float leftBottomRadius = mOption.getLeftBottomCornerRadius();
+                float rightBottomRadius = 0;
+                //CornerRadius被设置过，则统一采用CornerRadius
+                if (mOption.getCornerRadius() > 0) {
+                    leftBottomRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getCornerRadius());
+                }
+                if (mOption.getOnRCDHClickMiddleButtonListener() == null &&
+                        mOption.getOnRCDHClickRightButtonListener() == null) {
+                    rightBottomRadius = getCornerRadius(mOption.getRightBottomCornerRadius());
+                }
+                float[] leftRadius = new float[]{0, 0, 0, 0,
+                        rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius};
+                actvLeft.setBackground(getBgDrawable(mOption.getLeftButtonBgColor(), leftRadius));
             }
             actvLeft.setOnClickListener(this);
         } else {
@@ -273,15 +300,31 @@ public class RoundCornerDialogFragment extends DialogFragment implements View.On
             if (!TextUtils.isEmpty(mOption.getMiddleButtonText())) {
                 actvMiddle.setText(mOption.getMiddleButtonText());
             }
-            if (mOption.getMiddleButtonTextColor() != 0) {
-                actvMiddle.setTextColor(mOption.getMiddleButtonTextColor());
-            }
-            if (mOption.getMiddleButtonTextSize() > 0) {
-                actvMiddle.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getMiddleButtonTextSize());
+            if (mOption.getMiddleButtonTextAppearance() != 0) {
+                actvMiddle.setTextAppearance(getContext(), mOption.getMiddleButtonTextAppearance());
+            } else {
+                if (mOption.getMiddleButtonTextColor() != 0) {
+                    actvMiddle.setTextColor(mOption.getMiddleButtonTextColor());
+                }
+                if (mOption.getMiddleButtonTextSize() > 0) {
+                    actvMiddle.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getMiddleButtonTextSize());
+                }
             }
             if (mOption.getMiddleButtonPadding() > 0) {
                 int padding = (int) ScreenUtils.getPxFromDp(getResources(), mOption.getMiddleButtonPadding());
                 actvMiddle.setPadding(padding, padding, padding, padding);
+            }
+            if (mOption.getMiddleButtonBgColor() != 0) {
+                float leftBottomRadius = 0, rightBottomRadius = 0;
+                if (mOption.getOnRCDHClickLeftButtonListener() == null) {
+                    leftBottomRadius = getCornerRadius(mOption.getLeftBottomCornerRadius());
+                }
+                if (mOption.getOnRCDHClickRightButtonListener() == null) {
+                    rightBottomRadius = getCornerRadius(mOption.getRightBottomCornerRadius());
+                }
+                float[] middleRadius = new float[]{0, 0, 0, 0,
+                        rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius};
+                actvMiddle.setBackground(getBgDrawable(mOption.getMiddleButtonBgColor(), middleRadius));
             }
             actvMiddle.setOnClickListener(this);
         } else {
@@ -291,15 +334,33 @@ public class RoundCornerDialogFragment extends DialogFragment implements View.On
             if (!TextUtils.isEmpty(mOption.getRightButtonText())) {
                 actvRight.setText(mOption.getRightButtonText());
             }
-            if (mOption.getRightButtonTextColor() != 0) {
-                actvRight.setTextColor(mOption.getRightButtonTextColor());
-            }
-            if (mOption.getRightButtonTextSize() > 0) {
-                actvRight.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getRightButtonTextSize());
+            if (mOption.getRightButtonTextAppearance() != 0) {
+                actvRight.setTextAppearance(getContext(), mOption.getRightButtonTextAppearance());
+            } else {
+                if (mOption.getRightButtonTextColor() != 0) {
+                    actvRight.setTextColor(mOption.getRightButtonTextColor());
+                }
+                if (mOption.getRightButtonTextSize() > 0) {
+                    actvRight.setTextSize(TypedValue.COMPLEX_UNIT_SP, mOption.getRightButtonTextSize());
+                }
             }
             if (mOption.getRightButtonPadding() > 0) {
                 int padding = (int) ScreenUtils.getPxFromDp(getResources(), mOption.getRightButtonPadding());
                 actvRight.setPadding(padding, padding, padding, padding);
+            }
+            if (mOption.getRightButtonBgColor() != 0) {
+                float leftBottomRadius = 0;
+                float rightBottomRadius = mOption.getRightBottomCornerRadius();
+                if (mOption.getCornerRadius() > 0) {
+                    rightBottomRadius = ScreenUtils.getPxFromDp(getResources(), mOption.getCornerRadius());
+                }
+                if (mOption.getOnRCDHClickMiddleButtonListener() == null &&
+                        mOption.getOnRCDHClickLeftButtonListener() == null) {
+                    leftBottomRadius = getCornerRadius(mOption.getLeftBottomCornerRadius());
+                }
+                float[] leftRadius = new float[]{0, 0, 0, 0,
+                        rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius};
+                actvRight.setBackground(getBgDrawable(mOption.getRightButtonBgColor(), leftRadius));
             }
             actvRight.setOnClickListener(this);
         } else {
@@ -347,5 +408,33 @@ public class RoundCornerDialogFragment extends DialogFragment implements View.On
                 (mOption.getOnRCDHClickLeftButtonListener() == null &&
                         mOption.getOnRCDHClickMiddleButtonListener() == null &&
                         mOption.getOnRCDHClickRightButtonListener() == null);
+    }
+
+    /**
+     * 获取背景Drawable
+     *
+     * @param bgColor 背景颜色
+     * @param radius  圆角半径数组
+     * @return 返回生成的背景Drawable
+     */
+    private GradientDrawable getBgDrawable(int bgColor, float[] radius) {
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setColor(bgColor);
+        drawable.setCornerRadii(radius);
+        return drawable;
+    }
+
+    /**
+     * 获取判断后真实的圆角半径
+     *
+     * @param radius 指定要判断的圆角半径
+     * @return 返回判断后实际的圆角半径
+     */
+    private float getCornerRadius(float radius) {
+        if (mOption.getCornerRadius() > 0) {
+            return ScreenUtils.getPxFromDp(getResources(), mOption.getCornerRadius());
+        } else {
+            return ScreenUtils.getPxFromDp(getResources(), radius);
+        }
     }
 }

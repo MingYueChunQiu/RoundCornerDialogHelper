@@ -32,12 +32,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 RoundCornerDialogHelperOption option = new RoundCornerDialogHelperOption.Builder()
-                        .setTitleVisible(true)
                         .setCornerRadius(20)
                         .setBgColor(Color.RED)
                         .setTitleTextSize(24)
                         .setTitlePadding(30)
+                        .setTitleTextAppearance(R.style.AppCompatTextView_BOLD_ITALIC)
                         .setLeftButtonTextColor(Color.GREEN)
+                        .setLeftButtonBgColor(Color.BLUE)
+                        .setRightButtonBgColor(Color.YELLOW)
                         .setOnRCDHClickLeftButtonListener(new OnRCDHClickLeftButtonListener() {
                             @Override
                             public void onClickLeftButton(RoundCornerDialogFragment fragment, AppCompatTextView v) {

@@ -22,7 +22,7 @@ public class RoundCornerDialogHelperOption {
     private float leftTopCornerRadius;//左上圆角半径
     private float rightTopCornerRadius;//右上圆角半径
     private float leftBottomCornerRadius;//左下圆角半径
-    private float rightBottomCornerRadius;//右下圆角半径\
+    private float rightBottomCornerRadius;//右下圆角半径
     private float cornerRadius;//圆角半径
     private int bgColor;//背景颜色
     private Drawable bgDrawable;//背景图片
@@ -30,24 +30,32 @@ public class RoundCornerDialogHelperOption {
     private int titleTextColor;//标题文本颜色
     private int titleTextSize;//标题文本大小
     private int titlePadding;//标题内边距
+    private int titleTextAppearance;//标题文本样式（设置后颜色、大小属性将无效）
     private String contentText;//内容文本
     private int contentTextColor;//内容文本颜色
     private int contentTextSize;//内容文本大熊啊
     private int contentPadding;//内容内边距
+    private int contentTextAppearance;//内容文本样式（设置后颜色、大小属性将无效）
     private String leftButtonText;//左边按钮文本
     private int leftButtonTextColor;//左边按钮文本颜色
     private int leftButtonTextSize;//左边按钮文本大小
     private int leftButtonPadding;//左边按钮内边距
+    private int leftButtonTextAppearance;//左边按钮文本样式（设置后颜色、大小属性将无效）
+    private int leftButtonBgColor;//左边按钮背景颜色
     private String middleButtonText;//中间按钮文本
     private int middleButtonTextColor;//中间按钮文本颜色
     private int middleButtonTextSize;//中间按钮文本大小
     private int middleButtonPadding;//中间按钮内边距
+    private int middleButtonTextAppearance;//中间按钮文本样式（设置后颜色、大小属性将无效）
+    private int middleButtonBgColor;//中间按钮背景颜色
     private String rightButtonText;//右边按钮文本
     private int rightButtonTextColor;//右边按钮文本颜色
     private int rightButtonTextSize;//右边按钮文本大小
     private int rightButtonPadding;//右边按钮内边距
-    private boolean isTitleVisible;//标题是否可见
-    private boolean isContentVisible;//内容是否可见
+    private int rightButtonTextAppearance;//右边按钮文本样式（设置后颜色、大小属性将无效）
+    private int rightButtonBgColor;//右边按钮背景颜色
+    private boolean isTitleVisible = true;//标题是否可见
+    private boolean isContentVisible = true;//内容是否可见
     private View customView;//自定义显示view
     private CustomButtonContainerViewable customButtonContainerView;//自定义按钮容器类
     //点击左边按钮监听器,设置监听器后按钮才会显示
@@ -145,6 +153,14 @@ public class RoundCornerDialogHelperOption {
         this.titlePadding = titlePadding;
     }
 
+    public int getTitleTextAppearance() {
+        return titleTextAppearance;
+    }
+
+    public void setTitleTextAppearance(int titleTextAppearance) {
+        this.titleTextAppearance = titleTextAppearance;
+    }
+
     public String getContentText() {
         return contentText;
     }
@@ -175,6 +191,14 @@ public class RoundCornerDialogHelperOption {
 
     public void setContentPadding(int contentPadding) {
         this.contentPadding = contentPadding;
+    }
+
+    public int getContentTextAppearance() {
+        return contentTextAppearance;
+    }
+
+    public void setContentTextAppearance(int contentTextAppearance) {
+        this.contentTextAppearance = contentTextAppearance;
     }
 
     public String getLeftButtonText() {
@@ -209,6 +233,22 @@ public class RoundCornerDialogHelperOption {
         this.leftButtonPadding = leftButtonPadding;
     }
 
+    public int getLeftButtonTextAppearance() {
+        return leftButtonTextAppearance;
+    }
+
+    public void setLeftButtonTextAppearance(int leftButtonTextAppearance) {
+        this.leftButtonTextAppearance = leftButtonTextAppearance;
+    }
+
+    public int getLeftButtonBgColor() {
+        return leftButtonBgColor;
+    }
+
+    public void setLeftButtonBgColor(int leftButtonBgColor) {
+        this.leftButtonBgColor = leftButtonBgColor;
+    }
+
     public String getMiddleButtonText() {
         return middleButtonText;
     }
@@ -241,6 +281,22 @@ public class RoundCornerDialogHelperOption {
         this.middleButtonPadding = middleButtonPadding;
     }
 
+    public int getMiddleButtonTextAppearance() {
+        return middleButtonTextAppearance;
+    }
+
+    public void setMiddleButtonTextAppearance(int middleButtonTextAppearance) {
+        this.middleButtonTextAppearance = middleButtonTextAppearance;
+    }
+
+    public int getMiddleButtonBgColor() {
+        return middleButtonBgColor;
+    }
+
+    public void setMiddleButtonBgColor(int middleButtonBgColor) {
+        this.middleButtonBgColor = middleButtonBgColor;
+    }
+
     public String getRightButtonText() {
         return rightButtonText;
     }
@@ -271,6 +327,22 @@ public class RoundCornerDialogHelperOption {
 
     public void setRightButtonPadding(int rightButtonPadding) {
         this.rightButtonPadding = rightButtonPadding;
+    }
+
+    public int getRightButtonTextAppearance() {
+        return rightButtonTextAppearance;
+    }
+
+    public void setRightButtonTextAppearance(int rightButtonTextAppearance) {
+        this.rightButtonTextAppearance = rightButtonTextAppearance;
+    }
+
+    public int getRightButtonBgColor() {
+        return rightButtonBgColor;
+    }
+
+    public void setRightButtonBgColor(int rightButtonBgColor) {
+        this.rightButtonBgColor = rightButtonBgColor;
     }
 
     public boolean isTitleVisible() {
@@ -443,6 +515,15 @@ public class RoundCornerDialogHelperOption {
             return this;
         }
 
+        public int getTitleTextAppearance() {
+            return mOption.titleTextAppearance;
+        }
+
+        public Builder setTitleTextAppearance(int titleTextAppearance) {
+            mOption.titleTextAppearance = titleTextAppearance;
+            return this;
+        }
+
         public String getContentText() {
             return mOption.contentText;
         }
@@ -476,6 +557,15 @@ public class RoundCornerDialogHelperOption {
 
         public Builder setContentPadding(int contentPadding) {
             mOption.contentPadding = contentPadding;
+            return this;
+        }
+
+        public int getContentTextAppearance() {
+            return mOption.contentTextAppearance;
+        }
+
+        public Builder setContentTextAppearance(int contentTextAppearance) {
+            mOption.contentTextAppearance = contentTextAppearance;
             return this;
         }
 
@@ -515,6 +605,24 @@ public class RoundCornerDialogHelperOption {
             return this;
         }
 
+        public int getLeftButtonTextAppearance() {
+            return mOption.leftButtonTextAppearance;
+        }
+
+        public Builder setLeftButtonTextAppearance(int leftButtonTextAppearance) {
+            mOption.leftButtonTextAppearance = leftButtonTextAppearance;
+            return this;
+        }
+
+        public int getLeftButtonBgColor() {
+            return mOption.leftButtonBgColor;
+        }
+
+        public Builder setLeftButtonBgColor(int leftButtonBgColor) {
+            mOption.leftButtonBgColor = leftButtonBgColor;
+            return this;
+        }
+
         public String getMiddleButtonText() {
             return mOption.middleButtonText;
         }
@@ -551,6 +659,24 @@ public class RoundCornerDialogHelperOption {
             return this;
         }
 
+        public int getMiddleButtonTextAppearance() {
+            return mOption.middleButtonTextAppearance;
+        }
+
+        public Builder setMiddleButtonTextAppearance(int middleButtonTextAppearance) {
+            mOption.middleButtonTextAppearance = middleButtonTextAppearance;
+            return this;
+        }
+
+        public int getMiddleButtonBgColor() {
+            return mOption.middleButtonBgColor;
+        }
+
+        public Builder setMiddleButtonBgColor(int middleButtonBgColor) {
+            mOption.middleButtonBgColor = middleButtonBgColor;
+            return this;
+        }
+
         public String getRightButtonText() {
             return mOption.rightButtonText;
         }
@@ -584,6 +710,24 @@ public class RoundCornerDialogHelperOption {
 
         public Builder setRightButtonPadding(int rightButtonPadding) {
             mOption.rightButtonPadding = rightButtonPadding;
+            return this;
+        }
+
+        public int getRightButtonTextAppearance() {
+            return mOption.rightButtonTextAppearance;
+        }
+
+        public Builder setRightButtonTextAppearance(int rightButtonTextAppearance) {
+            mOption.rightButtonTextAppearance = rightButtonTextAppearance;
+            return this;
+        }
+
+        public int getRightButtonBgColor() {
+            return mOption.rightButtonBgColor;
+        }
+
+        public Builder setRightButtonBgColor(int rightButtonBgColor) {
+            mOption.rightButtonBgColor = rightButtonBgColor;
             return this;
         }
 
