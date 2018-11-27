@@ -31,29 +31,36 @@ public class RoundCornerDialogHelperOption {
     private int titleTextSize;//标题文本大小
     private int titlePadding;//标题内边距
     private int titleTextAppearance;//标题文本样式（设置后颜色、大小属性将无效）
+    private int titleBgColor;//标题背景颜色
+    private int titleGravity;//标题对齐方式
     private String contentText;//内容文本
     private int contentTextColor;//内容文本颜色
     private int contentTextSize;//内容文本大熊啊
     private int contentPadding;//内容内边距
     private int contentTextAppearance;//内容文本样式（设置后颜色、大小属性将无效）
+    private int contentBgColor;//内容背景颜色
+    private int contentGravity;//内容文本对齐方式
     private String leftButtonText;//左边按钮文本
     private int leftButtonTextColor;//左边按钮文本颜色
     private int leftButtonTextSize;//左边按钮文本大小
     private int leftButtonPadding;//左边按钮内边距
     private int leftButtonTextAppearance;//左边按钮文本样式（设置后颜色、大小属性将无效）
     private int leftButtonBgColor;//左边按钮背景颜色
+    private int leftButtonGravity;//左边按钮对齐方式
     private String middleButtonText;//中间按钮文本
     private int middleButtonTextColor;//中间按钮文本颜色
     private int middleButtonTextSize;//中间按钮文本大小
     private int middleButtonPadding;//中间按钮内边距
     private int middleButtonTextAppearance;//中间按钮文本样式（设置后颜色、大小属性将无效）
     private int middleButtonBgColor;//中间按钮背景颜色
+    private int middleButtonGravity;//中间按钮对齐方式
     private String rightButtonText;//右边按钮文本
     private int rightButtonTextColor;//右边按钮文本颜色
     private int rightButtonTextSize;//右边按钮文本大小
     private int rightButtonPadding;//右边按钮内边距
     private int rightButtonTextAppearance;//右边按钮文本样式（设置后颜色、大小属性将无效）
     private int rightButtonBgColor;//右边按钮背景颜色
+    private int rightButtonGravity;//右边按钮对齐方式
     private boolean isTitleVisible = true;//标题是否可见
     private boolean isContentVisible = true;//内容是否可见
     private View customView;//自定义显示view
@@ -161,6 +168,22 @@ public class RoundCornerDialogHelperOption {
         this.titleTextAppearance = titleTextAppearance;
     }
 
+    public int getTitleBgColor() {
+        return titleBgColor;
+    }
+
+    public void setTitleBgColor(int titleBgColor) {
+        this.titleBgColor = titleBgColor;
+    }
+
+    public int getTitleGravity() {
+        return titleGravity;
+    }
+
+    public void setTitleGravity(int titleGravity) {
+        this.titleGravity = titleGravity;
+    }
+
     public String getContentText() {
         return contentText;
     }
@@ -199,6 +222,22 @@ public class RoundCornerDialogHelperOption {
 
     public void setContentTextAppearance(int contentTextAppearance) {
         this.contentTextAppearance = contentTextAppearance;
+    }
+
+    public int getContentBgColor() {
+        return contentBgColor;
+    }
+
+    public void setContentBgColor(int contentBgColor) {
+        this.contentBgColor = contentBgColor;
+    }
+
+    public int getContentGravity() {
+        return contentGravity;
+    }
+
+    public void setContentGravity(int contentGravity) {
+        this.contentGravity = contentGravity;
     }
 
     public String getLeftButtonText() {
@@ -249,6 +288,14 @@ public class RoundCornerDialogHelperOption {
         this.leftButtonBgColor = leftButtonBgColor;
     }
 
+    public int getLeftButtonGravity() {
+        return leftButtonGravity;
+    }
+
+    public void setLeftButtonGravity(int leftButtonGravity) {
+        this.leftButtonGravity = leftButtonGravity;
+    }
+
     public String getMiddleButtonText() {
         return middleButtonText;
     }
@@ -297,6 +344,14 @@ public class RoundCornerDialogHelperOption {
         this.middleButtonBgColor = middleButtonBgColor;
     }
 
+    public int getMiddleButtonGravity() {
+        return middleButtonGravity;
+    }
+
+    public void setMiddleButtonGravity(int middleButtonGravity) {
+        this.middleButtonGravity = middleButtonGravity;
+    }
+
     public String getRightButtonText() {
         return rightButtonText;
     }
@@ -343,6 +398,14 @@ public class RoundCornerDialogHelperOption {
 
     public void setRightButtonBgColor(int rightButtonBgColor) {
         this.rightButtonBgColor = rightButtonBgColor;
+    }
+
+    public int getRightButtonGravity() {
+        return rightButtonGravity;
+    }
+
+    public void setRightButtonGravity(int rightButtonGravity) {
+        this.rightButtonGravity = rightButtonGravity;
     }
 
     public boolean isTitleVisible() {
@@ -524,6 +587,24 @@ public class RoundCornerDialogHelperOption {
             return this;
         }
 
+        public int getTitleBgColor() {
+            return mOption.titleBgColor;
+        }
+
+        public Builder setTitleBgColor(int titleBgColor) {
+            mOption.titleBgColor = titleBgColor;
+            return this;
+        }
+
+        public int getTitleGravity() {
+            return mOption.titleGravity;
+        }
+
+        public Builder setTitleGravity(int titleGravity) {
+            mOption.titleGravity = titleGravity;
+            return this;
+        }
+
         public String getContentText() {
             return mOption.contentText;
         }
@@ -566,6 +647,24 @@ public class RoundCornerDialogHelperOption {
 
         public Builder setContentTextAppearance(int contentTextAppearance) {
             mOption.contentTextAppearance = contentTextAppearance;
+            return this;
+        }
+
+        public int getContentBgColor() {
+            return mOption.contentBgColor;
+        }
+
+        public Builder setContentBgColor(int contentBgColor) {
+            mOption.contentBgColor = contentBgColor;
+            return this;
+        }
+
+        public int getContentGravity() {
+            return mOption.contentGravity;
+        }
+
+        public Builder setContentGravity(int contentGravity) {
+            mOption.contentGravity = contentGravity;
             return this;
         }
 
@@ -623,6 +722,15 @@ public class RoundCornerDialogHelperOption {
             return this;
         }
 
+        public int getLeftButtonGravity() {
+            return mOption.leftButtonGravity;
+        }
+
+        public Builder setLeftButtonGravity(int leftButtonGravity) {
+            mOption.leftButtonGravity = leftButtonGravity;
+            return this;
+        }
+
         public String getMiddleButtonText() {
             return mOption.middleButtonText;
         }
@@ -677,6 +785,15 @@ public class RoundCornerDialogHelperOption {
             return this;
         }
 
+        public int getMiddleButtonGravity() {
+            return mOption.middleButtonGravity;
+        }
+
+        public Builder setMiddleButtonGravity(int middleButtonGravity) {
+            mOption.middleButtonGravity = middleButtonGravity;
+            return this;
+        }
+
         public String getRightButtonText() {
             return mOption.rightButtonText;
         }
@@ -728,6 +845,15 @@ public class RoundCornerDialogHelperOption {
 
         public Builder setRightButtonBgColor(int rightButtonBgColor) {
             mOption.rightButtonBgColor = rightButtonBgColor;
+            return this;
+        }
+
+        public int getRightButtonGravity() {
+            return mOption.rightButtonGravity;
+        }
+
+        public Builder setRightButtonGravity(int rightButtonGravity) {
+            mOption.rightButtonGravity = rightButtonGravity;
             return this;
         }
 

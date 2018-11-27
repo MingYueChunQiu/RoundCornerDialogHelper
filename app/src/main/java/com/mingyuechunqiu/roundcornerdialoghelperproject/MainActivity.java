@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
                         .setTitleTextSize(24)
                         .setTitlePadding(30)
                         .setTitleTextAppearance(R.style.AppCompatTextView_BOLD_ITALIC)
+                        .setTitleBgColor(Color.GRAY)
+                        .setContentBgColor(Color.GREEN)
                         .setLeftButtonTextColor(Color.GREEN)
                         .setLeftButtonBgColor(Color.BLUE)
                         .setRightButtonBgColor(Color.YELLOW)
