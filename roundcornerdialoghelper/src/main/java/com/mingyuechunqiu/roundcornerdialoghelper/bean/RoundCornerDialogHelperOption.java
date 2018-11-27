@@ -1,7 +1,6 @@
 package com.mingyuechunqiu.roundcornerdialoghelper.bean;
 
 import android.graphics.drawable.Drawable;
-import android.view.View;
 
 import com.mingyuechunqiu.roundcornerdialoghelper.framework.OnRCDHClickLeftButtonListener;
 import com.mingyuechunqiu.roundcornerdialoghelper.framework.OnRCDHClickMiddleButtonListener;
