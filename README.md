@@ -26,7 +26,7 @@
 
 ```
 dependencies {
-		implementation 'com.github.MingYueChunQiu:RoundCornerDialogHelper:0.1.3'
+		implementation 'com.github.MingYueChunQiu:RoundCornerDialogHelper:0.1.4'
 	}
 ```
 ### 3.项目使用
@@ -77,7 +77,7 @@ dependencies {
     private int rightButtonGravity;//右边按钮对齐方式
     private boolean isTitleVisible = true;//标题是否可见
     private boolean isContentVisible = true;//内容是否可见
-    private View customView;//自定义显示view
+    private CustomViewable customViewable;//自定义显示view
     private CustomButtonContainerViewable customButtonContainerView;//自定义按钮容器类
     //点击左边按钮监听器,设置监听器后按钮才会显示
     private OnRCDHClickLeftButtonListener onRCDHClickLeftButtonListener;
