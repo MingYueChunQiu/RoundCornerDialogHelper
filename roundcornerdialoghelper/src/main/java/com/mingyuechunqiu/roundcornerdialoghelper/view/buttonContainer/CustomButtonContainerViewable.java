@@ -1,5 +1,6 @@
-package com.mingyuechunqiu.roundcornerdialoghelper.view;
+package com.mingyuechunqiu.roundcornerdialoghelper.view.buttonContainer;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
@@ -14,6 +15,7 @@ import android.view.View;
  */
 public interface CustomButtonContainerViewable {
 
+    @NonNull
     View getContainer();
 
     AppCompatTextView getLeftButton();

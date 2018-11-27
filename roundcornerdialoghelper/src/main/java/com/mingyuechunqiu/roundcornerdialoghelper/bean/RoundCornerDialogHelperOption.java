@@ -6,7 +6,8 @@ import android.view.View;
 import com.mingyuechunqiu.roundcornerdialoghelper.framework.OnRCDHClickLeftButtonListener;
 import com.mingyuechunqiu.roundcornerdialoghelper.framework.OnRCDHClickMiddleButtonListener;
 import com.mingyuechunqiu.roundcornerdialoghelper.framework.OnRCDHClickRightButtonListener;
-import com.mingyuechunqiu.roundcornerdialoghelper.view.CustomButtonContainerViewable;
+import com.mingyuechunqiu.roundcornerdialoghelper.view.buttonContainer.CustomButtonContainerViewable;
+import com.mingyuechunqiu.roundcornerdialoghelper.view.viewContainer.CustomViewable;
 
 /**
  * <pre>
@@ -63,7 +64,7 @@ public class RoundCornerDialogHelperOption {
     private int rightButtonGravity;//右边按钮对齐方式
     private boolean isTitleVisible = true;//标题是否可见
     private boolean isContentVisible = true;//内容是否可见
-    private View customView;//自定义显示view
+    private CustomViewable customViewable;//自定义显示view
     private CustomButtonContainerViewable customButtonContainerView;//自定义按钮容器类
     //点击左边按钮监听器,设置监听器后按钮才会显示
     private OnRCDHClickLeftButtonListener onRCDHClickLeftButtonListener;
@@ -424,12 +425,12 @@ public class RoundCornerDialogHelperOption {
         isContentVisible = contentVisible;
     }
 
-    public View getCustomView() {
-        return customView;
+    public CustomViewable getCustomViewable() {
+        return customViewable;
     }
 
-    public void setCustomView(View customView) {
-        this.customView = customView;
+    public void setCustomViewable(CustomViewable customViewable) {
+        this.customViewable = customViewable;
     }
 
     public CustomButtonContainerViewable getCustomButtonContainerView() {
@@ -875,12 +876,12 @@ public class RoundCornerDialogHelperOption {
             return this;
         }
 
-        public View getCustomView() {
-            return mOption.customView;
+        public CustomViewable getCustomViewable() {
+            return mOption.customViewable;
         }
 
-        public Builder setCustomView(View customView) {
-            mOption.customView = customView;
+        public Builder setCustomViewable(CustomViewable customViewable) {
+            mOption.customViewable = customViewable;
             return this;
         }
 

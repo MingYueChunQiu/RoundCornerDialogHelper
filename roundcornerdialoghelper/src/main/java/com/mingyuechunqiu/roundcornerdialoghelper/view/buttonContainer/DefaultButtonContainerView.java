@@ -1,6 +1,7 @@
-package com.mingyuechunqiu.roundcornerdialoghelper.view;
+package com.mingyuechunqiu.roundcornerdialoghelper.view.buttonContainer;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ public class DefaultButtonContainerView implements CustomButtonContainerViewable
                 R.layout.rcdh_layout_default_button_view_container, container, false);
     }
 
+    @NonNull
     @Override
     public View getContainer() {
         return vContainer;
