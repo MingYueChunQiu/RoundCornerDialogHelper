@@ -122,4 +122,4 @@ RoundCornerDialogHelperOption option = new RoundCornerDialogHelperOption.Builder
                 fragment.show(getSupportFragmentManager(), RoundCornerDialogFragment.class.getSimpleName());
 ```
 ### 4.总结
-具体的项目框架可以到GitHub上查看，https://github.com/MingYueChunQiu/RoundCornerDialogHelper.git ，如果有任何意见或建议，欢迎反馈，谢谢！
+具体的项目框架可以到GitHub上查看，https://github.com/MingYueChunQiu/RoundCornerDialogHelper.git ，码云地址：https://gitee.com/MingYueChunQiu/RoundCornerDialogHelper.git ，如果有任何意见或建议，欢迎反馈，谢谢！
