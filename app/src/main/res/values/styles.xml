@@ -13,4 +13,9 @@
         <item name="android:textColor">@android:color/holo_orange_dark</item>
         <item name="android:textStyle">bold|italic</item>
     </style>
+
+    <style name="Dialog_Animation">
+        <item name="android:windowEnterAnimation">@android:anim/slide_in_left</item>
+        <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
+    </style>
 </resources>

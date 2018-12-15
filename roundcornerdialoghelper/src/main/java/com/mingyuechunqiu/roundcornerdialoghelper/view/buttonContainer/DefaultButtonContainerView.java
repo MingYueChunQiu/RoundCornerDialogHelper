@@ -2,10 +2,10 @@ package com.mingyuechunqiu.roundcornerdialoghelper.view.buttonContainer;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.mingyuechunqiu.roundcornerdialoghelper.R;
 
@@ -35,17 +35,17 @@ public class DefaultButtonContainerView implements CustomButtonContainerViewable
     }
 
     @Override
-    public AppCompatTextView getLeftButton() {
+    public TextView getLeftButton() {
         return vContainer.findViewById(R.id.tv_rcdh_left_button);
     }
 
     @Override
-    public AppCompatTextView getMiddleButton() {
+    public TextView getMiddleButton() {
         return vContainer.findViewById(R.id.tv_rcdh_middle_button);
     }
 
     @Override
-    public AppCompatTextView getRightButton() {
+    public TextView getRightButton() {
         return vContainer.findViewById(R.id.tv_rcdh_right_button);
     }
 }

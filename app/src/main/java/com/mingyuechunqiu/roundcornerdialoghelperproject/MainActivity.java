@@ -1,13 +1,15 @@
 package com.mingyuechunqiu.roundcornerdialoghelperproject;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatTextView;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mingyuechunqiu.roundcornerdialoghelper.bean.RCDHTextOption;
 import com.mingyuechunqiu.roundcornerdialoghelper.bean.RoundCornerDialogHelperOption;
 import com.mingyuechunqiu.roundcornerdialoghelper.dialogFragment.RoundCornerDialogFragment;
 import com.mingyuechunqiu.roundcornerdialoghelper.framework.OnRCDHClickLeftButtonListener;
@@ -31,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
         btnCustom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                RCDHTextOption textOption = new RCDHTextOption.Builder()
+                        .setTextColor(Color.RED)
+                        .setGravity(Gravity.RIGHT)
+                        .setTextSize(20)
+                        .build();
                 RoundCornerDialogHelperOption option = new RoundCornerDialogHelperOption.Builder()
                         .setCornerRadius(20)
                         .setBgColor(Color.RED)
@@ -41,16 +48,21 @@ public class MainActivity extends AppCompatActivity {
                         .setContentBgColor(Color.GREEN)
                         .setLeftButtonTextColor(Color.GREEN)
                         .setLeftButtonBgColor(Color.BLUE)
-                        .setRightButtonBgColor(Color.YELLOW)
+                        .setRightButtonTextOption(textOption)
+                        .setRightButtonTextColor(Color.BLACK)
+                        .setWidth(getResources().getDisplayMetrics().widthPixels)
+                        .setHeight(getResources().getDisplayMetrics().heightPixels)
+                        .setCancelable(false)
+                        .setWindowAnimationStyleResId(R.style.Dialog_Animation)
                         .setOnRCDHClickLeftButtonListener(new OnRCDHClickLeftButtonListener() {
                             @Override
-                            public void onClickLeftButton(RoundCornerDialogFragment fragment, AppCompatTextView v) {
+                            public void onClickLeftButton(RoundCornerDialogFragment fragment, TextView v) {
                                 Toast.makeText(MainActivity.this, "左边", Toast.LENGTH_SHORT).show();
                             }
                         })
                         .setOnRCDHClickRightButtonListener(new OnRCDHClickRightButtonListener() {
                             @Override
-                            public void onClickRightButton(RoundCornerDialogFragment fragment, AppCompatTextView v) {
+                            public void onClickRightButton(RoundCornerDialogFragment fragment, TextView v) {
                                 Toast.makeText(MainActivity.this, "右边", Toast.LENGTH_SHORT).show();
                             }
                         })

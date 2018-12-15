@@ -1,6 +1,6 @@
 package com.mingyuechunqiu.roundcornerdialoghelper.framework;
 
-import android.support.v7.widget.AppCompatTextView;
+import android.widget.TextView;
 
 import com.mingyuechunqiu.roundcornerdialoghelper.dialogFragment.RoundCornerDialogFragment;
 
@@ -15,5 +15,5 @@ import com.mingyuechunqiu.roundcornerdialoghelper.dialogFragment.RoundCornerDial
  */
 public interface OnRCDHClickRightButtonListener {
 
-    void onClickRightButton(RoundCornerDialogFragment fragment, AppCompatTextView v);
+    void onClickRightButton(RoundCornerDialogFragment fragment, TextView v);
 }

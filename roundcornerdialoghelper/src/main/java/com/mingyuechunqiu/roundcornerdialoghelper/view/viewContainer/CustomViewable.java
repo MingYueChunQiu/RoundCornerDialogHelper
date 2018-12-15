@@ -1,8 +1,8 @@
 package com.mingyuechunqiu.roundcornerdialoghelper.view.viewContainer;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
+import android.widget.TextView;
 
 /**
  * <pre>
@@ -19,7 +19,7 @@ public interface CustomViewable {
     @NonNull
     View getContainer();
 
-    AppCompatTextView getTitleView();
+    TextView getTitleView();
 
-    AppCompatTextView getContentView();
+    TextView getContentView();
 }

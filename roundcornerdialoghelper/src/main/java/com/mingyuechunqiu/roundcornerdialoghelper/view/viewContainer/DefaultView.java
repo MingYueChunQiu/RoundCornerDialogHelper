@@ -2,10 +2,10 @@ package com.mingyuechunqiu.roundcornerdialoghelper.view.viewContainer;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.mingyuechunqiu.roundcornerdialoghelper.R;
 
@@ -36,12 +36,12 @@ public class DefaultView implements CustomViewable {
     }
 
     @Override
-    public AppCompatTextView getTitleView() {
+    public TextView getTitleView() {
         return vContainer.findViewById(R.id.tv_rcdh_title);
     }
 
     @Override
-    public AppCompatTextView getContentView() {
+    public TextView getContentView() {
         return vContainer.findViewById(R.id.tv_rcdh_content);
     }
 }
