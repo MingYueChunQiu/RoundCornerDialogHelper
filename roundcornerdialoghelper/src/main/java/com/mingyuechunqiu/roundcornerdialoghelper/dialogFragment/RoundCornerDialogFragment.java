@@ -80,7 +80,8 @@ public class RoundCornerDialogFragment extends DialogFragment implements View.On
     @Override
     public void onStart() {
         super.onStart();
-        if (getDialog().getWindow() != null) {
+        if (getDialog().getWindow() != null &&
+                (mOption.getWidth() > 0 || mOption.getHeight() > 0)) {
             getDialog().getWindow().setLayout(mOption.getWidth(), mOption.getHeight());
         }
     }
