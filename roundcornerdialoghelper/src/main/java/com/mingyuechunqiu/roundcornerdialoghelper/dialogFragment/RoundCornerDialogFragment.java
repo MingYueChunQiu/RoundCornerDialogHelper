@@ -94,6 +94,7 @@ public class RoundCornerDialogFragment extends DialogFragment implements View.On
         mBtnContainerViewable = null;
         if (mDelegate != null) {
             mDelegate.release();
+            mDelegate = null;
         }
     }
 
