@@ -25,7 +25,7 @@
 
 ```
 dependencies {
-		implementation 'com.github.MingYueChunQiu:RoundCornerDialogHelper:0.2'
+		implementation 'com.github.MingYueChunQiu:RoundCornerDialogHelper:0.2.1'
 	}
 ```
 ### 3.项目使用
