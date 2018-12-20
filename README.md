@@ -1,6 +1,6 @@
 # RoundCornerDialogHelper
 圆角仿iOS风格对话框
-因为项目需要，所以写了一个圆角对话框，可以自定义圆角半径，view和按钮显示。
+因为项目需要，所以写了一个圆角对话框库，可以自定义圆角半径，view和按钮显示等内容。
 ### 1.效果截图
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2018112512061853.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NsMjAxOGdvZA==,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20181127103858948.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NsMjAxOGdvZA==,size_16,color_FFFFFF,t_70)
@@ -161,4 +161,4 @@ RCDHTextOption textOption = new RCDHTextOption.Builder()
                 fragment.show(getSupportFragmentManager(), RoundCornerDialogFragment.class.getSimpleName());
 ```
 ### 4.总结
-具体的项目框架可以到GitHub上查看，https://github.com/MingYueChunQiu/RoundCornerDialogHelper.git ，码云地址：https://gitee.com/MingYueChunQiu/RoundCornerDialogHelper.git ，如果有任何意见或建议，欢迎反馈，谢谢！
+具体的项目框架可以到GitHub上查看，https://github.com/MingYueChunQiu/RoundCornerDialogHelper.git ，码云地址：https://gitee.com/MingYueChunQiu/RoundCornerDialogHelper.git ，如果有任何意见或建议，欢迎反馈，觉得可以的话，帮忙点个star，谢谢！
